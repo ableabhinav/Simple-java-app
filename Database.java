@@ -276,6 +276,43 @@ class BookInventory extends Frame implements ActionListener
         // }catch(Exception E){}
         
     }
+    public static void getBookInfoToRemove(String bnm,int bqn)
+    {
+        // Book B = new Book();
+        // B.setName(bnm);
+        // B.setAuthor(bau);
+        // B.setPub(bpub);
+        // B.setCategory(bcat);
+        // B.setPrice(bpr);
+        // B.setQuantity(bqn);
+
+        Iterator it = bookList2.iterator();
+        
+         boolean flg = false;
+        while(it.hasNext())
+        {
+            Book b1=(Book)it.next();
+
+            if( b1.name.equals(bnm))
+            {
+
+                if(b1.getQuantity()>bqn)
+                    b1.quantity -=bqn;
+                else
+                    JOptionPane.showMessageDialog(null,"Given quantity of book is not available");
+                flg = true;
+            }
+        }
+        if(!flg)
+            JOptionPane.showMessageDialog(null,"Given book is not available");
+        // if(!flg)
+        //     bookList2.add(B);
+        // try
+        // {
+        //     D1.commit(bookList2);
+        // }catch(Exception E){}
+        
+    }
     public void actionPerformed(ActionEvent e1)
     {
         Button b=(Button)e1.getSource();
@@ -298,7 +335,7 @@ class BookInventory extends Frame implements ActionListener
            // bookList2[0].getName();
         	String str="";
         	for(int i=0; i<bookList2.size(); i++)
-        		str+=bookList2.get(i).getName()+"\n";
+        		str+=bookList2.get(i).getName()+bookList2.get(i).getQuantity()+"\n";
             JOptionPane.showMessageDialog(null,str);
 
         }

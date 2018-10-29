@@ -5,11 +5,11 @@ import java.awt.event.*;
 public class RemoveBook extends Frame implements ActionListener
 {
      Button bback,brmb;
-     Label lbnm;
-     TextField tbnm;
+     Label lbnm,lbqn;
+     TextField tbnm,tbqn;
      //Vector<Project> v;
       //Project f;
-    ArrayList<Book> bookList2; 
+    //ArrayList<Book> bookList2; 
     String bnm;
     int bqn;
     BookInventory f1;
@@ -17,16 +17,18 @@ public class RemoveBook extends Frame implements ActionListener
     public RemoveBook()
      {
         super("Book Info");
-        this.bookList2 = bookList2;
+        //this.bookList2 = bookList2;
         // D = new Database();
         lbnm=new Label("Name");
         lbnm.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lbnm.setForeground(Color.GRAY);
-        
+        lbqn=new Label("Quantity");
+        lbqn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lbqn.setForeground(Color.GRAY);
         //tbnm,tbau,tbpub,tbcat,tbpr,tbqn;
         //v=new Vector<Project>();
        tbnm=new TextField(6);
-       
+       tbqn=new TextField(8);
         
         
         bback=new Button("Back");
@@ -40,6 +42,8 @@ public class RemoveBook extends Frame implements ActionListener
 //tbnm,tbau,tbpub,tbcat,tbpr,tbqn;
          add(lbnm);
          add(tbnm);
+         add(lbqn);
+         add(tbqn);
          add(brmb);
          add(bback);
 
@@ -52,24 +56,32 @@ public class RemoveBook extends Frame implements ActionListener
     // String bcat;
     // int bpr;
     // int bqn;
-    RemoveBook(String nm)
+    RemoveBook(String nm, int qn)
     {
         bnm=nm;
-        
+        bqn=qn;
     }
      public void actionPerformed(ActionEvent e)
      {
         Button b=(Button)e.getSource();
         if(b==brmb)
         {
-            
+            bnm=tbnm.getText();
+
+            bqn=Integer.parseInt(tbqn.getText());
+
+
+            System.out.println(bnm+bqn);
+            BookInventory.getBookInfoToRemove(bnm,bqn);
+
+            this.dispose();
         }
         else if(b==bback)
         {
-            try
-            {
-                f1=new BookInventory();
-            }catch(Exception E){}
+            // try
+            // {
+            //     f1=new BookInventory();
+            // }catch(Exception E){}
             this.dispose();
         }
     }

@@ -2,6 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
+//java -cp .:mysql-connector-java.jar Database
+//javac -cp .:mysql-connector-java.jar *.java
+// create database bookInventory;
+// use bookInventory;
+// create table books(id varchar (20), name varchar(20), author varchar(20), category varchar(20), publisher varchar(20), quantity int(10));
 public class AddBook extends Frame implements ActionListener
 {
      Button bback,baddb;
